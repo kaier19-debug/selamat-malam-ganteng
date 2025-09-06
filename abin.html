@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Malam Ganteng</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 500px;
+        width: 100%;
+        z-index: 2;
+      }
+
+      .stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #4fc3f7;
+        border-radius: 50%;
+        animation: twinkle 2s infinite;
+      }
+
+      @keyframes twinkle {
+        0% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0.2;
+          transform: scale(1);
+        }
+      }
+
+      .moon {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        box-shadow: 0 0 40px rgba(224, 224, 224, 0.6);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        color: #4fc3f7;
+        text-shadow: 2px 2px 0px #0288d1;
+      }
+
+      .message {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 25px;
+        margin: 20px 0;
+        line-height: 1.6;
+        font-size: 1.1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+      }
+
+      .star-icon {
+        color: #4fc3f7;
+        font-size: 2rem;
+        animation: spin 3s infinite;
+        display: inline-block;
+        margin: 10px 0;
+        text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(180deg) scale(1.2);
+        }
+        100% {
+          transform: rotate(360deg) scale(1);
+        }
+      }
+
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      .btn-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .cute-btn {
+        background: linear-gradient(135deg, #4fc3f7 0%, #0288d1 100%);
+        border: none;
+        border-radius: 50px;
+        padding: 15px 25px;
+        color: white;
+        font-size: 1.1rem;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(2, 136, 209, 0.4);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cute-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(2, 136, 209, 0.6);
+      }
+
+      .cute-btn:nth-child(2) {
+        background: linear-gradient(135deg, #4db6ac 0%, #00796b 100%);
+        box-shadow: 0 5px 15px rgba(0, 121, 107, 0.4);
+      }
+
+      .cute-btn:nth-child(3) {
+        background: linear-gradient(135deg, #7986cb 0%, #3f51b5 100%);
+        box-shadow: 0 5px 15px rgba(63, 81, 181, 0.4);
+      }
+
+      .hidden-message {
+        display: none;
+        margin-top: 30px;
+        font-style: italic;
+        color: #4fc3f7;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        animation: fadeIn 1s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .bubble {
+        position: absolute;
+        background: rgba(79, 195, 247, 0.2);
+        border-radius: 50%;
+        animation: float 8s infinite ease-in-out;
+        z-index: 0;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-40px) translateX(-10px);
+        }
+        75% {
+          transform: translateY(-20px) translateX(-15px);
+        }
+      }
+
+      .stars-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .star-particle {
+        position: absolute;
+        font-size: 20px;
+        color: #4fc3f7;
+        opacity: 0;
+        animation: float-star 5s forwards;
+      }
+
+      @keyframes float-star {
+        0% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(var(--tx)) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .cute-emoji {
+        font-size: 3rem;
+        margin: 15px 0;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .blue-star {
+        color: #4fc3f7;
+        text-shadow: 0 0 10px rgba(79, 195, 247, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
+    <div class="bubbles" id="bubbles"></div>
+    <div class="stars-container" id="stars-container"></div>
+
+    <div class="container">
+      <div class="moon">🌙</div>
+      <h1>Selamat Malam Ganteng <span class="blue-star">★</span></h1>
+
+      <div class="message">
+        <p>Di bawah sinar bulan yang indah ini,</p>
+        <p>aku ingin mengucapkan...</p>
+        <p class="star-icon">★</p>
+        <p>Selamat malam untuk gantengku</p>
+        <p>Tidur yang nyenyak dan bermimpi indah!</p>
+      </div>
+
+      <div class="btn-container">
+        <button class="cute-btn" onclick="showMessage(1)">
+          <i class="fas fa-star"></i> Klik Aku
+        </button>
+        <button class="cute-btn" onclick="showMessage(2)">
+          <i class="fas fa-moon"></i> Aku yang ini
+        </button>
+        <button class="cute-btn" onclick="showMessage(3)">
+          <i class="fas fa-cloud"></i> Jangan lupa ini
+        </button>
+      </div>
+
+      <div class="hidden-message" id="message1">
+        <div class="cute-emoji">🌟</div>
+        <p>Kamu adalah bintang yang menerangi malamku</p>
+        <p>Selalu terbayang senyum manismu!</p>
+        <p class="star-icon">★ ★</p>
+      </div>
+
+      <div class="hidden-message" id="message2">
+        <div class="cute-emoji">✨</div>
+        <p>Dari perempuan kecilmu yang selalu merindukanmu</p>
+        <p>Selalu jaga kesehatan dan istirahat yang cukup ya!</p>
+        <p class="star-icon">★ 🌙 ★</p>
+      </div>
+
+      <div class="hidden-message" id="message3">
+        <div class="cute-emoji">🌠</div>
+        <p>Jangan lupa bermimpi indah tentang aku ya!</p>
+        <p>hihihiii</p>
+        <p class="star-icon">★ ✨ ★</p>
+      </div>
+
+      <div class="footer">
+        <p>
+          Dikirim dengan penuh kasih sayang <span class="blue-star">★</span>
+        </p>
+        <p>© 2025 - Untukmu yang spesial</p>
+      </div>
+    </div>
+
+    <script>
+      // Membuat bintang-bintang
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 100;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const size = Math.random() * 4 + 2;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+
+          star.style.animationDelay = `${Math.random() * 5}s`;
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Membuat gelembung
+      function createBubbles() {
+        const bubblesContainer = document.getElementById("bubbles");
+        const bubbleCount = 15;
+
+        for (let i = 0; i < bubbleCount; i++) {
+          const bubble = document.createElement("div");
+          bubble.classList.add("bubble");
+
+          const size = Math.random() * 50 + 20;
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+
+          bubble.style.left = `${Math.random() * 100}%`;
+          bubble.style.top = `${Math.random() * 100 + 100}%`;
+
+          bubble.style.animationDelay = `${Math.random() * 5}s`;
+          bubble.style.animationDuration = `${Math.random() * 10 + 8}s`;
+
+          bubblesContainer.appendChild(bubble);
+        }
+      }
+
+      // Menampilkan pesan spesial
+      function showMessage(id) {
+        // Sembunyikan semua pesan terlebih dahulu
+        document.querySelectorAll(".hidden-message").forEach((msg) => {
+          msg.style.display = "none";
+        });
+
+        // Tampilkan pesan yang dipilih
+        const message = document.getElementById(`message${id}`);
+        message.style.display = "block";
+
+        // Buat efek bintang
+        createStarParticles();
+      }
+
+      // Membuat efek bintang
+      function createStarParticles() {
+        const starsContainer = document.getElementById("stars-container");
+        starsContainer.innerHTML = "";
+
+        for (let i = 0; i < 20; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star-particle");
+          star.innerHTML = "★";
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.bottom = "0";
+          star.style.setProperty("--tx", `${Math.random() * 100 - 50}px`);
+          star.style.animationDelay = `${i * 0.2}s`;
+          star.style.fontSize = `${Math.random() * 15 + 15}px`;
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Jalankan saat halaman dimuat
+      window.onload = function () {
+        createStars();
+        createBubbles();
+      };
+    </script>
+  </body>
+</html>
